@@ -6,8 +6,21 @@ import React from 'react';
 class App extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {date: new Date()};
+    this.state = {
+      date: new Date(),
+      isModalVisible: false,
+    };
+  
   }
+
+  shouldComponentUpdate(props, state) {
+    if (props == 'Заголовок') {
+        return true
+    } else {
+      return false
+    }
+  }
+
   render() {
     return (
       <div className="App">
@@ -25,9 +38,24 @@ class App extends React.Component {
             Learn React
           </a>
         </header>
+        <Modal
+          isVisible={this.state.isModalVisible}
+          onTap={() => {
+            this.setState({isModalVisible: !this.state.isModalVisible})
+          }}/>
       </div>
     );
   }
 }
 
 export default App;
+
+
+function Modal(props) {
+  
+  return (
+    <div className={'Modal'}>
+
+    </div>
+  )
+}
